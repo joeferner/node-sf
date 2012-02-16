@@ -1,0 +1,353 @@
+var sf = require('../');
+
+module.exports = {
+  'integer location': function (test) {
+    var result = sf("a{0}b{1}c{0}", 1, 2);
+    test.equals(result, 'a1b2c1');
+    test.done();
+  },
+
+  'json location': function (test) {
+    var result = sf("a{a}b{b}c{a}", { a: 1, b: 2 });
+    test.equals(result, 'a1b2c1');
+    test.done();
+  },
+
+  'align left': function (test) {
+    var result = sf("a{0,-10}b", 'test');
+    test.equals(result, 'atest      b');
+    test.done();
+  },
+
+  'align right': function (test) {
+    var result = sf("a{0,10}b", 'test');
+    test.equals(result, 'a      testb');
+    test.done();
+  },
+
+  'align with number format': function (test) {
+    var result = sf("a{0,10:#,###}b", 5000);
+    test.equals(result, 'a     5,000b');
+    test.done();
+  },
+
+  'number format (comma)': function (test) {
+    var result = sf("a{0:#,###}b", 5000);
+    test.equals(result, 'a5,000b');
+    test.done();
+  },
+
+  'number format (negative)': function (test) {
+    var result = sf("a{0:#,###}b", -5000);
+    test.equals(result, 'a-5,000b');
+    test.done();
+  },
+
+  'number format (positive)': function (test) {
+    var result = sf("a{0:+#,###}b", 5000);
+    test.equals(result, 'a+5,000b');
+    test.done();
+  },
+
+  'number format (positive, negative number)': function (test) {
+    var result = sf("a{0:+#,###}b", -5000);
+    test.equals(result, 'a-5,000b');
+    test.done();
+  },
+
+  'number format (decimal)': function (test) {
+    var result = sf("a{0:#,###.00}b", -5000);
+    test.equals(result, 'a-5,000.00b');
+    test.done();
+  },
+
+  'number format (decimal, overflow)': function (test) {
+    var result = sf("a{0:#,###.00}b", -5000.123);
+    test.equals(result, 'a-5,000.12b');
+    test.done();
+  },
+
+  'number format (decimal, optional)': function (test) {
+    var result = sf("a{0:#,###.##}b", -5000);
+    test.equals(result, 'a-5,000b');
+    test.done();
+  },
+
+  'number format (decimal, optional overflow)': function (test) {
+    var result = sf("a{0:#,###.##}b", -5000.123);
+    test.equals(result, 'a-5,000.12b');
+    test.done();
+  },
+
+  'date format (Short date)': function (test) {
+    var result = sf("a{0:sd}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a2/2/2012b');
+    test.done();
+  },
+
+  'date format (Long date)': function (test) {
+    var result = sf("a{0:D}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'aFebruary 02, 2012b');
+    test.done();
+  },
+
+  'date format (Short time)': function (test) {
+    var result = sf("a{0:t}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a03:04 AMb');
+    test.done();
+  },
+
+  'date format (Long time)': function (test) {
+    var result = sf("a{0:T}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a03:04:05 AMb');
+    test.done();
+  },
+
+  'date format (Full date & time)': function (test) {
+    var result = sf("a{0:fdt}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'aFebruary 02, 2012 03:04 AMb');
+    test.done();
+  },
+
+  'date format (Full date & time (long))': function (test) {
+    var result = sf("a{0:F}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'aFebruary 02, 2012 03:04:05 AMb');
+    test.done();
+  },
+
+  'date format (Default date & time)': function (test) {
+    var result = sf("a{0:g}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a2/2/2012 03:04 AMb');
+    test.done();
+  },
+
+  'date format (Default date & time (long))': function (test) {
+    var result = sf("a{0:G}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a2/2/2012 03:04:05 AMb');
+    test.done();
+  },
+
+  'date format (Month day pattern)': function (test) {
+    var result = sf("a{0:md}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'aFebruary 02b');
+    test.done();
+  },
+
+  'date format (RFC1123 date string)': function (test) {
+    var result = sf("a{0:r}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'aThu, 02 Feb 2012 03:04:05 +05b');
+    test.done();
+  },
+
+  'date format (Sortable date string)': function (test) {
+    var result = sf("a{0:s}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a2012-02-02:03:04:05b');
+    test.done();
+  },
+
+  'date format (single digit date)': function (test) {
+    var result = sf("a{0:d}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a2b');
+    test.done();
+  },
+
+  'date format (multidigit date)': function (test) {
+    var result = sf("a{0:dd}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a02b');
+    test.done();
+  },
+
+  'date format (Short day of week)': function (test) {
+    var result = sf("a{0:ddd}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'aThub');
+    test.done();
+  },
+
+  'date format (long day of week)': function (test) {
+    var result = sf("a{0:dddd}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'aThursdayb');
+    test.done();
+  },
+
+  'date format (millis 1)': function (test) {
+    var result = sf("a{0:f}b", new Date(2012, 1, 2, 3, 4, 5, 129));
+    test.equals(result, 'a1b');
+    test.done();
+  },
+
+  'date format (millis 2)': function (test) {
+    var result = sf("a{0:ff}b", new Date(2012, 1, 2, 3, 4, 5, 129));
+    test.equals(result, 'a12b');
+    test.done();
+  },
+
+  'date format (millis 3)': function (test) {
+    var result = sf("a{0:fff}b", new Date(2012, 1, 2, 3, 4, 5, 129));
+    test.equals(result, 'a129b');
+    test.done();
+  },
+
+  'date format (hours 12 hour format 1)': function (test) {
+    var result = sf("a{0:h}b", new Date(2012, 1, 2, 13, 4, 5, 6));
+    test.equals(result, 'a1b');
+    test.done();
+  },
+
+  'date format (hours 12 hour format 2)': function (test) {
+    var result = sf("a{0:hh}b", new Date(2012, 1, 2, 13, 4, 5, 6));
+    test.equals(result, 'a01b');
+    test.done();
+  },
+
+  'date format (hours 24 hour format 1)': function (test) {
+    var result = sf("a{0:H}b", new Date(2012, 1, 2, 13, 4, 5, 6));
+    test.equals(result, 'a13b');
+    test.done();
+  },
+
+  'date format (hours 24 hour format 2)': function (test) {
+    var result = sf("a{0:HH}b", new Date(2012, 1, 2, 13, 4, 5, 6));
+    test.equals(result, 'a13b');
+    test.done();
+  },
+
+  'date format (minutes)': function (test) {
+    var result = sf("a{0:mm}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a04b');
+    test.done();
+  },
+
+  'date format (month 1)': function (test) {
+    var result = sf("a{0:M}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a2b');
+    test.done();
+  },
+
+  'date format (month 2)': function (test) {
+    var result = sf("a{0:MM}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a02b');
+    test.done();
+  },
+
+  'date format (month short)': function (test) {
+    var result = sf("a{0:MMM}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'aFebb');
+    test.done();
+  },
+
+  'date format (month long)': function (test) {
+    var result = sf("a{0:MMMM}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'aFebruaryb');
+    test.done();
+  },
+
+  'date format (seconds)': function (test) {
+    var result = sf("a{0:ss}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a05b');
+    test.done();
+  },
+
+  'date format (year 2)': function (test) {
+    var result = sf("a{0:yy}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a12b');
+    test.done();
+  },
+
+  'date format (year 4)': function (test) {
+    var result = sf("a{0:yyyy}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a2012b');
+    test.done();
+  },
+
+  'date format (timezone)': function (test) {
+    var result = sf("a{0:zz}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a05b');
+    test.done();
+  },
+
+  'date format (timezone +)': function (test) {
+    var result = sf("a{0:+zz}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a+05b');
+    test.done();
+  },
+
+  'date format (whole timezone)': function (test) {
+    var result = sf("a{0:zzz}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a05:00b');
+    test.done();
+  },
+
+  'date format (bad format)': function (test) {
+    try {
+      sf("a{0:aaa}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+      test.fail("should throw");
+    } catch (ex) {
+    }
+    test.done();
+  },
+
+  'string with bad format spec': function (test) {
+    try {
+      sf("a{0:aaa}b", 'a');
+      test.fail("should throw");
+    } catch (ex) {
+    }
+    test.done();
+  },
+
+  'object with inspect': function (test) {
+    var result = sf("a{0:inspect}b", { a: 1, b: 'test', c: { d: { e: { f: 'down' }}} });
+    test.equals(result, 'a{ a: 1, b: \'test\', c: { d: { e: [Object] } } }b');
+    test.done();
+  },
+
+  'object with json': function (test) {
+    var result = sf("a{0:json}b", { a: 1, b: 'test', c: { d: { e: { f: 'down' }}} });
+    test.equals(result, 'a{"a":1,"b":"test","c":{"d":{"e":{"f":"down"}}}}b');
+    test.done();
+  },
+
+  'unterminated sub': function (test) {
+    try {
+      sf("a{0", 4);
+      test.fail("should throw");
+    } catch (ex) {
+    }
+    test.done();
+  },
+
+  'unescaped substitution': function (test) {
+    try {
+      sf("a}b", 4);
+      test.fail("should throw");
+    } catch (ex) {
+    }
+    test.done();
+  },
+
+  'escaped sub': function (test) {
+    var result = sf("a{{0}}b", 6);
+    test.equals(result, 'a{0}b');
+    test.done();
+  },
+
+  'sub at end': function (test) {
+    try {
+      sf("a{", 4);
+      test.fail("should throw");
+    } catch (ex) {
+      test.equals("Unterminated substitution", ex.message);
+    }
+    test.done();
+  },
+
+  'close sub at end': function (test) {
+    try {
+      sf("a}", 4);
+      test.fail("should throw");
+    } catch (ex) {
+      test.equals("Unescaped substitution", ex.message);
+    }
+    test.done();
+  }
+};
