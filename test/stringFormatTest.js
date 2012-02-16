@@ -103,6 +103,18 @@ module.exports = {
     test.done();
   },
 
+  'number format (zero)': function (test) {
+    var result = sf("a{0}b", 0);
+    test.equals(result, 'a0b');
+    test.done();
+  },
+
+  'number format (zero, just number placeholder)': function (test) {
+    var result = sf("a{0:#}b", 0);
+    test.equals(result, 'a0b');
+    test.done();
+  },
+
   'date format (Short date)': function (test) {
     var result = sf("a{0:sd}b", new Date(2012, 1, 2, 3, 4, 5, 6));
     test.equals(result, 'a2/2/2012b');

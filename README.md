@@ -31,6 +31,13 @@ sf("{0,15:#,##0.00}", 2123.1);
 The format is similar to C#'s string.format. The text inside the curly braces is {indexOrName[,alignment][:formatString]}.
 If alignment is positive the text is right aligned. If alignment is negative it will be left aligned.
 
+### Object
+
+| Specifier | Name                         |
+|-----------|------------------------------|
+| json      | JSON.stringify               |
+| inspect   | util.inspect                 |
+
 ### Numbers
 
 | Specifier | Name                         | Example          | Output         |
