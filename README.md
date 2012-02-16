@@ -31,6 +31,15 @@ sf("{0,15:#,##0.00}", 2123.1);
 The format is similar to C#'s string.format. The text inside the curly braces is {indexOrName[,alignment][:formatString]}.
 If alignment is positive the text is right aligned. If alignment is negative it will be left aligned.
 
+### Numbers
+
+| Specifier | Name                         | Example          | Output         |
+|-----------|------------------------------|------------------|----------------|
+| 0         | Zero placeholder             | {0:00.0000}      | 02.1200        |
+| #         | Digit placeholder            | {0:#,###}        | 1,234          |
+| x         | Lowercase hex                | {0:x4}           | 01fc           |
+| X         | Uppercase hex                | {0:X4}           | 01FC           |
+
 ### Dates
 
 | Specifier | Name                         | Example                        |

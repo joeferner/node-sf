@@ -79,6 +79,30 @@ module.exports = {
     test.done();
   },
 
+  'number format (hex)': function (test) {
+    var result = sf("a{0:x}b", 500);
+    test.equals(result, 'a1f4b');
+    test.done();
+  },
+
+  'number format (hex upper)': function (test) {
+    var result = sf("a{0:X}b", 500);
+    test.equals(result, 'a1F4b');
+    test.done();
+  },
+
+  'number format (hex, length)': function (test) {
+    var result = sf("a{0:x4}b", 500);
+    test.equals(result, 'a01f4b');
+    test.done();
+  },
+
+  'number format (hex upper, length)': function (test) {
+    var result = sf("a{0:X4}b", 500);
+    test.equals(result, 'a01F4b');
+    test.done();
+  },
+
   'date format (Short date)': function (test) {
     var result = sf("a{0:sd}b", new Date(2012, 1, 2, 3, 4, 5, 6));
     test.equals(result, 'a2/2/2012b');
