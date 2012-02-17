@@ -456,5 +456,13 @@ module.exports = {
     var result = sf("a{0:message}b", err);
     test.equals(result, 'aTest errorb');
     test.done();
+  },
+
+  'console functions': function (test) {
+    sf.log('test {0}', 'test');
+    sf.info('test {0}', 'test');
+    sf.warn('test {0}', 'test');
+    sf.error('test {0}', 'test');
+    test.done();
   }
 };

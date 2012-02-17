@@ -14,31 +14,34 @@ $ npm install sf
 var sf = require("sf");
 
 sf("{who} has a {what}", { who: 'dog', what: 'tail' });
-// outputs: dog has a tail
+// returns: dog has a tail
 
 sf("{0} has a {1}", 'dog', 'tail');
-// outputs: dog has a tail
+// returns: dog has a tail
 
 sf("{0:#,##0.00}", 2123.1);
-// outputs: 2,123.10
+// returns: 2,123.10
 
 sf("{0,15:#,##0.00}", 2123.1);
-// outputs:        2,123.10
+// returns:        2,123.10
 
 sf("{a.b}", { a: { b: 'test' }});
-// outputs: test
+// returns: test
 
 sf("{a.z.c}", { a: { b: 'test' }});
 // throws an error
 
 sf("{a.?z.?c}", { a: { b: 'test' }});
-// outputs:
+// returns:
 
 sf("{a[0]}", { a: [ 'foo', 'bar' ]});
-// outputs: foo
+// returns: foo
 
 sf("{a[-1]}", { a: [ 'foo', 'bar' ]});
-// outputs: bar
+// returns: bar
+
+sf.log("{who} has a {what}", { who: 'dog', what: 'tail' });
+// outputs to standard out: dog has a tail
 ```
 
 ## Format Specifiers
@@ -101,3 +104,9 @@ If alignment is positive the text is right aligned. If alignment is negative it 
 | +zz       | Time zone offset leading +   | +05                            |
 | zzz       | Time zone offset full        | 05:00                          |
 
+## Helper Functions
+
+ * sf.log(formatString [, args...]);
+ * sf.info(formatString [, args...]);
+ * sf.warn(formatString [, args...]);
+ * sf.error(formatString [, args...]);
