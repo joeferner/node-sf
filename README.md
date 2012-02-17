@@ -24,6 +24,21 @@ sf("{0:#,##0.00}", 2123.1);
 
 sf("{0,15:#,##0.00}", 2123.1);
 // outputs:        2,123.10
+
+sf("{a.b}", { a: { b: 'test' }});
+// outputs: test
+
+sf("{a.z.c}", { a: { b: 'test' }});
+// throws an error
+
+sf("{a.?z.?c}", { a: { b: 'test' }});
+// outputs:
+
+sf("{a[0]}", { a: [ 'foo', 'bar' ]});
+// outputs: foo
+
+sf("{a[-1]}", { a: [ 'foo', 'bar' ]});
+// outputs: bar
 ```
 
 ## Format Specifiers
