@@ -441,5 +441,20 @@ module.exports = {
       test.equals("Unescaped substitution", ex.message);
     }
     test.done();
+  },
+
+  'errors': function (test) {
+    var err = new Error("Test error");
+    var result = sf("a{0}b", err);
+    test.ok(result.indexOf('Error: Test error') == 1, 'Could not find or bad location of "Error: Test error"\n\n' + result + '\n\n');
+    test.ok(result.indexOf('stringFormatTest') > 0, 'Could not find or bad location of "stringFormatTest"\n\n' + result + '\n\n');
+    test.done();
+  },
+
+  'errors just the message': function (test) {
+    var err = new Error("Test error");
+    var result = sf("a{0:message}b", err);
+    test.equals(result, 'aTest errorb');
+    test.done();
   }
 };
