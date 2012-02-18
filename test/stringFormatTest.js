@@ -13,6 +13,62 @@ module.exports = {
     test.done();
   },
 
+  'nested location': function (test) {
+    var result = sf("a{a.b.c}b", {a: {b: {c: 'test'}}});
+    test.equals(result, 'atestb');
+    test.done();
+  },
+
+  'nested location (undefined)': function (test) {
+    try {
+      var result = sf("a{a.z.c}b", {a: {b: {c: 'test'}}});
+      test.fail("should throw");
+    } catch (ex) {
+      test.equals("Cannot read property \'c\' of undefined", ex.message);
+    }
+    test.done();
+  },
+
+  'nested location (undefined, safe ok)': function (test) {
+    var result = sf("a{a.?b.?c}b", {a: {b: {c: 'test'}}});
+    test.equals(result, 'atestb');
+    test.done();
+  },
+
+  'nested location (undefined, safe fail)': function (test) {
+    var result = sf("a{a.?z.?c}b", {a: {b: {c: 'test'}}});
+    test.equals(result, 'ab');
+    test.done();
+  },
+
+  'array index location': function (test) {
+    var result = sf("a{a[1]}b", {a: [ '1', '2' ]});
+    test.equals(result, 'a2b');
+    test.done();
+  },
+
+  'array of arrays index location': function (test) {
+    var result = sf("a{a[1][2]}b", {a: [ '1', ['a', 'b', 'c'] ]});
+    test.equals(result, 'acb');
+    test.done();
+  },
+
+  'array index location (negative)': function (test) {
+    var result = sf("a{a[-1]}b", {a: [ '1', '2', '3' ]});
+    test.equals(result, 'a3b');
+    test.done();
+  },
+
+  'array index location (out of bounds)': function (test) {
+    try {
+      var result = sf("a{a[3].c}b", {a: [ '1', '2', '3' ]});
+      test.fail("should throw");
+    } catch (ex) {
+      test.equals("Cannot read property \'c\' of undefined", ex.message);
+    }
+    test.done();
+  },
+
   'align left': function (test) {
     var result = sf("a{0,-10}b", 'test');
     test.equals(result, 'atest      b');
@@ -384,6 +440,29 @@ module.exports = {
     } catch (ex) {
       test.equals("Unescaped substitution", ex.message);
     }
+    test.done();
+  },
+
+  'errors': function (test) {
+    var err = new Error("Test error");
+    var result = sf("a{0}b", err);
+    test.ok(result.indexOf('Error: Test error') == 1, 'Could not find or bad location of "Error: Test error"\n\n' + result + '\n\n');
+    test.ok(result.indexOf('stringFormatTest') > 0, 'Could not find or bad location of "stringFormatTest"\n\n' + result + '\n\n');
+    test.done();
+  },
+
+  'errors just the message': function (test) {
+    var err = new Error("Test error");
+    var result = sf("a{0:message}b", err);
+    test.equals(result, 'aTest errorb');
+    test.done();
+  },
+
+  'console functions': function (test) {
+    sf.log('test {0}', 'test');
+    sf.info('test {0}', 'test');
+    sf.warn('test {0}', 'test');
+    sf.error('test {0}', 'test');
     test.done();
   }
 };
