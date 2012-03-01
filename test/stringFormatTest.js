@@ -2,8 +2,8 @@ var sf = require('../');
 
 module.exports = {
   'integer location': function (test) {
-    var result = sf("a{0}b{1}c{0}", 1, 2);
-    test.equals(result, 'a1b2c1');
+    var result = sf("a{0}b{1}c{0}", 154, 298);
+    test.equals(result, 'a154b298c154');
     test.done();
   },
 
