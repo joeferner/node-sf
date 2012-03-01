@@ -34,8 +34,9 @@ module.exports = {
   'wordwrap': function (test) {
     var result = sf.indent("L1 - 012345678901234567890\nL2 - Don't split words", { wordwrap: 20 });
     test.equals(result, ''
-      + "  L1 - 0123456789012\n"
-      + "  34567890\n"
+      + "  L1 -\n"
+      + "  012345678901234567\n"
+      + "  890\n"
       + "  L2 - Don't split\n"
       + "  words");
     test.done();
@@ -46,6 +47,15 @@ module.exports = {
     test.equals(result, ''
       + "L1 - Don't split-\n"
       + "words");
+    test.done();
+  },
+
+  'wordwrap empty lines': function (test) {
+    var result = sf.indent("L1\n\nL2", { wordwrap: 20 });
+    test.equals(result, ''
+      + "  L1\n"
+      + "  \n"
+      + "  L2");
     test.done();
   }
 
