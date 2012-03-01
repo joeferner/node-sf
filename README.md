@@ -67,42 +67,44 @@ If alignment is positive the text is right aligned. If alignment is negative it 
 
 ### Dates
 
-| Specifier | Name                         | Example                        |
-|-----------|------------------------------|--------------------------------|
-| sd        | Short date                   | 10/12/2002                     |
-| D         | Long date                    | December 10, 2002              |
-| t         | Short time                   | 10:11 PM                       |
-| T         | Long time                    | 10:11:29 PM                    |
-| fdt       | Full date & time             | December 10, 2002 10:11 PM     |
-| F         | Full date & time (long)      | December 10, 2002 10:11:29 PM  |
-| g         | Default date & time          | 10/12/2002 10:11 PM            |
-| G         | Default date & time (long)   | 10/12/2002 10:11:29 PM         |
-| md        | Month day pattern            | December 10                    |
-| r         | RFC1123 date string          | Tue, 10 Dec 2002 22:11:29 GMT  |
-| s         | Sortable date string         | 2002-12-10T22:11:29            |
-| d         | Date single digit            | 1                              |
-| dd        | Date leading zero            | 01                             |
-| ddd       | Short day name               | Mon                            |
-| dddd      | Long day name                | Monday                         |
-| f         | Fraction of second (1 digit) | 1                              |
-| ff        | Fraction of second (2 digit) | 24                             |
-| fff       | Fraction of second (3 digit) | 345                            |
-| h         | Hour 12-hour format 1 digit  | 5                              |
-| hh        | Hour 12-hour format 2 digits | 05                             |
-| H         | Hour 24-hour format 1 digit  | 5                              |
-| HH        | Hour 24-hour format 2 digits | 05                             |
-| mm        | Minutes 2 digits             | 23                             |
-| M         | Month single digit           | 2                              |
-| MM        | Month leading zero           | 02                             |
-| MMM       | Month short name             | Feb                            |
-| MMMM      | Month long name              | February                       |
-| ss        | Seconds 2 digits             | 54                             |
-| tt        | AM/PM                        | AM                             |
-| yy        | Year 2 digits                | 12                             |
-| yyyy      | Year 4 digits                | 2012                           |
-| zz        | Time zone offset             | 05                             |
-| +zz       | Time zone offset leading +   | +05                            |
-| zzz       | Time zone offset full        | 05:00                          |
+| Specifier | Name                            | Example                         |
+|-----------|---------------------------------|---------------------------------|
+| sd        | Short date                      | 10/12/2002                      |
+| D         | Long date                       | December 10, 2002               |
+| t         | Short time                      | 10:11 PM                        |
+| T         | Long time                       | 10:11:29 PM                     |
+| fdt       | Full date & time                | December 10, 2002 10:11 PM      |
+| F         | Full date & time (long)         | December 10, 2002 10:11:29 PM   |
+| g         | Default date & time             | 10/12/2002 10:11 PM             |
+| G         | Default date & time (long)      | 10/12/2002 10:11:29 PM          |
+| md        | Month day pattern               | December 10                     |
+| r         | RFC1123 date string             | Tue, 10 Dec 2002 22:11:29 +0500 |
+| s         | Sortable date string            | 2002-12-10T22:11:29             |
+| d         | Date single digit               | 1                               |
+| dd        | Date leading zero               | 01                              |
+| ddd       | Short day name                  | Mon                             |
+| dddd      | Long day name                   | Monday                          |
+| f         | Fraction of second (1 digit)    | 1                               |
+| ff        | Fraction of second (2 digit)    | 24                              |
+| fff       | Fraction of second (3 digit)    | 345                             |
+| h         | Hour 12-hour format 1 digit     | 5                               |
+| hh        | Hour 12-hour format 2 digits    | 05                              |
+| H         | Hour 24-hour format 1 digit     | 5                               |
+| HH        | Hour 24-hour format 2 digits    | 05                              |
+| mm        | Minutes 2 digits                | 23                              |
+| M         | Month single digit              | 2                               |
+| MM        | Month leading zero              | 02                              |
+| MMM       | Month short name                | Feb                             |
+| MMMM      | Month long name                 | February                        |
+| ss        | Seconds 2 digits                | 54                              |
+| tt        | AM/PM                           | AM                              |
+| yy        | Year 2 digits                   | 12                              |
+| yyyy      | Year 4 digits                   | 2012                            |
+| zz        | Time zone offset                | 05                              |
+| +zz       | Time zone offset leading +      | +05                             |
+| zzz       | Time zone offset full           | 05:00                           |
+| zzzz      | Time zone offset full           | 0500                            |
+| +zzzz     | Time zone offset full leading + | +0500                           |
 
 ## Helper Functions
 
