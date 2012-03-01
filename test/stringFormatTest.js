@@ -227,7 +227,7 @@ module.exports = {
 
   'date format (RFC1123 date string)': function (test) {
     var result = sf("a{0:r}b", new Date(2012, 1, 2, 3, 4, 5, 6));
-    test.equals(result, 'aThu, 02 Feb 2012 03:04:05 +05b');
+    test.equals(result, 'aThu, 02 Feb 2012 03:04:05 +0500b');
     test.done();
   },
 
@@ -362,10 +362,22 @@ module.exports = {
     test.equals(result, 'a+05b');
     test.done();
   },
-
+  
   'date format (whole timezone)': function (test) {
     var result = sf("a{0:zzz}b", new Date(2012, 1, 2, 3, 4, 5, 6));
     test.equals(result, 'a05:00b');
+    test.done();
+  },
+
+  'date format (rfc 822/1123 timezone)': function(test) {
+    var result = sf("a{0:+zzzz}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a+0500b');
+    test.done();
+  },
+
+  'date format (whole timezone no colon)': function(test) {
+    var result = sf("a{0:zzzz}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'a0500b');
     test.done();
   },
 
