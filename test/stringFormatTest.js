@@ -87,6 +87,12 @@ module.exports = {
     test.done();
   },
 
+  'align with date format': function (test) {
+    var result = sf("a{0,20:yyyy-MM-dd'T'HH:mm:ss}b", new Date(2012, 1, 2, 3, 4, 5));
+    test.equals(result, 'a 2012-02-02T03:04:05b');
+    test.done();
+  },
+
   'number format (comma)': function (test) {
     var result = sf("a{0:#,###}b", 5000);
     test.equals(result, 'a5,000b');
