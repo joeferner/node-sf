@@ -417,6 +417,12 @@ module.exports = {
     test.done();
   },
 
+  'object with indent': function (test) {
+    var result = sf("{0:indent}", { a: 1, b: 'test', c: { d: { e: { f: 'down' }}} });
+    test.equals(result, 'a: 1\nb: test\nc:\n  d:\n    e:\n      f: down');
+    test.done();
+  },
+
   'unterminated sub': function (test) {
     try {
       sf("a{0", 4);
