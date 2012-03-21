@@ -19,6 +19,12 @@ module.exports = {
     test.done();
   },
 
+  'nested location using brackets': function (test) {
+    var result = sf("a{a['b']['c']}b", {a: {b: {c: 'test'}}});
+    test.equals(result, 'atestb');
+    test.done();
+  },
+
   'nested location (undefined)': function (test) {
     try {
       var result = sf("a{a.z.c}b", {a: {b: {c: 'test'}}});
