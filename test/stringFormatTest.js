@@ -99,6 +99,12 @@ module.exports = {
     test.done();
   },
 
+  'bunched together date formatting': function (test) {
+    var result = sf("a{0:yyyyMMddHHmmss}b", new Date(2012, 1, 2, 3, 4, 5));
+    test.equals(result, 'a20120202030405b');
+    test.done();
+  },
+
   'number format (comma)': function (test) {
     var result = sf("a{0:#,###}b", 5000);
     test.equals(result, 'a5,000b');
@@ -394,11 +400,8 @@ module.exports = {
   },
 
   'date format (bad format)': function (test) {
-    try {
-      sf("a{0:aaa}b", new Date(2012, 1, 2, 3, 4, 5, 6));
-      test.fail("should throw");
-    } catch (ex) {
-    }
+    var result = sf("a{0:aaa}b", new Date(2012, 1, 2, 3, 4, 5, 6));
+    test.equals(result, 'aaaab');
     test.done();
   },
 

@@ -15,5 +15,8 @@
   "devDependencies": {
     "nodeunit": "~0.7.3"
   },
+  "scripts": {
+    "test": "nodeunit test"
+  },
   "main": "./index.js"
 }
