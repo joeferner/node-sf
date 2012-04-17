@@ -432,6 +432,18 @@ module.exports = {
     test.done();
   },
 
+  'object with buffer with indent': function (test) {
+    var result = sf("{0:indent}", { a: new Buffer([1, 2, 3]) });
+    test.equals(result, 'a: Buffer[1, 2, 3] (length: 3)');
+    test.done();
+  },
+
+  'object with long buffer with indent': function (test) {
+    var result = sf("{0:indent}", { a: new Buffer([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) });
+    test.equals(result, 'a: Buffer[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ...] (length: 12)');
+    test.done();
+  },
+
   'unterminated sub': function (test) {
     try {
       sf("a{0", 4);
