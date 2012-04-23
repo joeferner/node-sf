@@ -127,6 +127,17 @@ only output the number of seconds in a minute.
 
 If you repeat characters the value will be prefixed with zeros.
 
+## sf.indent(str, options)
+
+Helper function to word wrap and indent a string.
+
+__Arguments__
+
+ * str - The string to indent and wrap.
+ * options
+  * prefix - The prefix to appear at the beginning of each new line.
+  * wordwrap - The maximum length of each line.
+
 ## Helper Functions
 
  * sf.log(formatString [, args...]);
