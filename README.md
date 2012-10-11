@@ -1,5 +1,7 @@
 # sf
 
+[![Build Status](https://secure.travis-ci.org/nearinfinity/node-sf.png)](http://travis-ci.org/nearinfinity/node-sf)
+
 String formatting library for node.js.
 
 ## Installation
