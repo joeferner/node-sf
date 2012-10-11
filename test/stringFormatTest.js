@@ -437,8 +437,8 @@ module.exports = {
   },
 
   'object with indent': function(test) {
-    var result = sf("{0:indent}", { a: 1, b: 'test', c: { d: { e: { f: 'down' }}}, d: true, e: new Date(2012, 1, 2, 3, 4, 5) });
-    test.equals(result, 'a: 1\nb: test\nc:\n  d:\n    e:\n      f: down\nd: true\ne: Thu Feb 02 2012 03:04:05 GMT-0500 (EST)');
+    var result = sf("{0:indent}", { a: 1, b: 'test', c: { d: { e: { f: 'down' }}}, d: true, e: new timezoneJS.Date(2012, 1, 2, 3, 4, 5, 6, 'Etc/UTC') });
+    test.equals(result, 'a: 1\nb: test\nc:\n  d:\n    e:\n      f: down\nd: true\ne: Thu, 02 Feb 2012 03:04:05 +0000');
     test.done();
   },
 
