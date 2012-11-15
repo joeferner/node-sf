@@ -103,6 +103,18 @@ module.exports = {
     test.done();
   },
 
+  '12 hour format midnight': function(test) {
+    var result = sf("a{0:hhtt}b", new Date(2012, 1, 2, 0, 4, 5));
+    test.equals(result, 'a12AMb');
+    test.done();
+  },
+
+  '12 hour format noon': function(test) {
+    var result = sf("a{0:hhtt}b", new Date(2012, 1, 2, 12, 4, 5));
+    test.equals(result, 'a12PMb');
+    test.done();
+  },
+
   'align with date format': function(test) {
     var result = sf("a{0,20:yyyy-MM-dd'T'HH:mm:ss}b", new Date(2012, 1, 2, 3, 4, 5));
     test.equals(result, 'a 2012-02-02T03:04:05b');
