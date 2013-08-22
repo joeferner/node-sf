@@ -1,7 +1,5 @@
 'use strict';
 
-var util = require('util');
-
 var shortDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 var shortMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -295,9 +293,6 @@ function formatDatePart(date, format) {
 }
 
 function getYear(date) {
-  if (isTimezoneJsDate(date)) {
-    return date.getYear();
-  }
   return date.getYear() + 1900;
 }
 
@@ -419,7 +414,7 @@ function formatObject(obj, format) {
   }
 
   if (format == 'inspect') {
-    return util.inspect(obj);
+    return require('util').inspect(obj);
   }
 
   if (format == 'json') {
@@ -818,9 +813,19 @@ sf.TimeSpan = function(milliseconds, seconds, minutes, hours, days) {
 
   this.toString = function() {
     return _ms;
-  }
+  };
 
   return this;
 };
 
-module.exports = sf;
+var module;
+if(module) {
+  module.exports = sf;
+}
+
+var window;
+if (window) {
+  define([], function() {
+    return sf;
+  });
+}
