@@ -531,5 +531,11 @@ module.exports = {
     sf.warn('test {0}', 'test');
     sf.error('test {0}', 'test');
     test.done();
+  },
+
+  'curly brace - issue #1': function(test) {
+    var result = sf('{{1{test}}}', { test: 1 });
+    test.equals('{11}', result);
+    test.done();
   }
 };
