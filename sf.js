@@ -825,7 +825,9 @@ if(module) {
 
 var window;
 if (window) {
-  define([], function() {
-    return sf;
-  });
+  try {
+    define([], function() {
+      return sf;
+    });
+  } catch(e) {}
 }
