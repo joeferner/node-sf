@@ -818,8 +818,7 @@ sf.TimeSpan = function(milliseconds, seconds, minutes, hours, days) {
   return this;
 };
 
-var module;
-if(module) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = sf;
 }
 
