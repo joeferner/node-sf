@@ -822,8 +822,8 @@ if (typeof module !== 'undefined' && module.exports) {
   module.exports = sf;
 }
 
-var window;
-if (window) {
+var define;
+if (typeof define === 'function') {
   try {
     define([], function() {
       return sf;
