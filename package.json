@@ -32,5 +32,8 @@
   "scripts": {
     "test": "nodeunit test"
   },
-  "main": "./sf.js"
+  "main": "./sf.js",
+  "dependencies": {
+    "util": "0.10.3"
+  }
 }
