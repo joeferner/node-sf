@@ -576,6 +576,8 @@ function sf(formatString) {
         result += align(formatDate(val, formatSpec), alignVal);
       } else if (val instanceof Error) {
         result += align(formatError(val, formatSpec), alignVal);
+      } else if (typeof(val) === 'boolean') {
+        result += align(val.toString(), alignVal);
       } else {
         result += align(formatObject(val, formatSpec), alignVal);
       }
