@@ -466,6 +466,12 @@ module.exports = {
     test.done();
   },
 
+  'boolean': function(test) {
+    var result = sf("{0}|{1}", false, true);
+    test.equals(result, 'false|true');
+    test.done();
+  },
+
   'unterminated sub': function(test) {
     try {
       sf("a{0", 4);
