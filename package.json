@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "nodeunit": "^0.11.3",
+    "tap": "~10.7.0",
     "timezone-js": "^0.4.13"
   },
   "scripts": {
