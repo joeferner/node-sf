@@ -1,5 +1,3 @@
-'use strict';
-
 var sf = require('../');
 
 module.exports = {
