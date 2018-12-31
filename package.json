@@ -1,7 +1,7 @@
 {
   "name": "sf",
   "description": "String formatting library for node.js",
-  "author": "Joe Ferner <joe.ferner@nearinfinity.com>",
+  "author": "Joe Ferner <joe@fernsroth.com>",
   "keywords": [
     "string",
     "format",
@@ -14,26 +14,26 @@
   "maintainers": [
     {
       "name": "Joe Ferner",
-      "email": "joe.ferner@nearinfinity.com"
+      "email": "joe@fernsroth.com"
     }
   ],
   "bugs": {
-    "url": "https://github.com/nearinfinity/node-sf/issues"
+    "url": "https://github.com/joeferner/node-sf/issues"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nearinfinity/node-sf.git"
+    "url": "https://github.com/joeferner/node-sf.git"
   },
   "devDependencies": {
-    "nodeunit": "~0.7.3",
-    "timezone-js": "~0.4.3"
+    "nodeunit": "^0.11.3",
+    "timezone-js": "^0.4.13"
   },
   "scripts": {
     "test": "nodeunit test"
   },
   "main": "./sf.js",
   "dependencies": {
-    "util": "0.10.3"
+    "utils": "^0.3.1"
   }
 }
